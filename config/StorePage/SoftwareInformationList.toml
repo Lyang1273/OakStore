@@ -1,0 +1,10 @@
+[data]
+date = 20250711
+
+[ClassWidgets]
+name = "Class Widgets"
+developer = "RinLit"
+openSourceLicense = "GPL-3.0 license"
+developmentStatus = "活跃"    # 开发状态：活跃、停更、暂停、计划中、未知
+programmingLanguage = "Python"
+officialWebsite = "classwidgets.rinlit.cn"

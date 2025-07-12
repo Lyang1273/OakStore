@@ -3,6 +3,14 @@ import maliang
 import time
 
 
+def card(cv, position_x, position_y, name, description, icon_path):
+    maliang.Label(cv, (position_x-5, position_y-5), size=(300, 70))
+    maliang.Image(cv, (position_x, position_y), image=maliang.PhotoImage(file=icon_path).resize(64, 64))
+    maliang.Text(cv, (position_x+75, position_y), text=name, fontsize=24)
+    maliang.Text(cv, (position_x+75, position_y+35), text=description, fontsize=16)
+
+
+
 class OakStorePage():
     def Home(self, cv, windows=None, page_type="oak"):
         """
@@ -14,10 +22,21 @@ class OakStorePage():
         cv.clear()
 
         # time.sleep(2)
-        maliang.Image(cv, (0, 0), image=maliang.PhotoImage(file="./img/StoreHome/CW.png").resize(750, 395))
-        maliang.Text(cv, (20, 385), text="ClassWidgets，一款美观实用的课程表软件。", anchor="sw")
-        maliang.Button(cv, (730, 385), text="查看详情 >", anchor="se")
-        maliang.Button(cv, (375, 420), text="进入商店", anchor="center", command=lambda: StorePage.page1(cv))
+        maliang.Text(cv, (40, 10), text="推荐的软件", fontsize=24)
+        card(cv, 50, 60, "Class Widgets", "全新桌面课程表", "./img/Page/ClassWidgets.png")
+        card(cv, 50, 140, "ClassIsland", "课表的信息显示工具", "./img/Page/ClassIsland.png")
+
+        maliang.Text(cv, (710, 10), text="OakStore", fontsize=24, anchor="ne")
+        maliang.Button(cv, (700, 60), text="进入商店以查看更多", anchor="ne", command=lambda: StorePage.page1(cv), fontsize=16)
+        maliang.Button(cv, (700, 110), text="OakStore设置", anchor="ne", fontsize=16)
+        maliang.Button(cv, (700, 160), text="关于OakStore", anchor="ne", fontsize=16)
+
+    def about(self, cv, page_type="oak"):
+        cv.clear()
+        StorePage = OakStorePage()
+
+        maliang.Button(cv, (0, 0), text=" < ", command=lambda: StorePage.Home(cv))
+        maliang.Text(cv, (10, 50), )
 
     def page1(self, cv, windows=None, page_type="oak"):
         StorePage = OakStorePage()

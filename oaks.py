@@ -1,16 +1,16 @@
 from loguru import logger
 import maliang
 import time
+import tomllib
 
 
-def card(cv, position_x, position_y, name, description, icon_path):
+def card(cv, position_x, position_y, name, description, icon_path):    # 一个信息展示小卡片
     maliang.Label(cv, (position_x-5, position_y-5), size=(300, 70))
     maliang.Image(cv, (position_x, position_y), image=maliang.PhotoImage(file=icon_path).resize(64, 64))
     maliang.Text(cv, (position_x+75, position_y), text=name, fontsize=24)
     maliang.Text(cv, (position_x+75, position_y+35), text=description, fontsize=16)
 
-
-
+# 想吃RinLit了qwq
 class OakStorePage():
     def Home(self, cv, windows=None, page_type="oak"):
         """
@@ -71,3 +71,17 @@ class SoftwareSector():
 开发者/商：RinLit
 开源协议：GPL-3.0 license
 """, fontsize=14)
+
+
+class SoftwareInfo():
+    def GetSoftwareInformationList(self, name):    # 获取软件信息
+        logger.info(f"获取{name}的软件信息")
+        with open("./config/StorePage/SoftwareInformationList.toml", "rb") as f:
+            Info = tomllib.load(f)
+
+            SwName = Info["name"]    # 软件名
+            SwDeveloper = Info["developer"]    # 开发者
+            SwOpenSourceLicense = Info["openSourceLicense"]    # 开源协议
+            SwDevelopmentStatus = Info["developmentStatus"]    # 开发状态
+            SwProgrammingLanguage = Info["programmingLanguage"]     # 编程语言
+            SwOfficialWebsite = Info["officialWebsite"]    # 官网

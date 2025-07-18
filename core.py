@@ -1,4 +1,5 @@
 from loguru import logger
+import sys
 
 logger.debug("导入maliang")
 import maliang
@@ -9,10 +10,16 @@ logger.debug("实例化")
 OAKSGUI = oaks.OakStorePage()
 
 
+def quit():
+    logger.info("程序退出")
+    sys.exit(0)
+
+
 class Application:
     def GUI(self):
         logger.debug("创建主窗口")
         root = maliang.Tk(size=(750, 450), title="OakStore")
+        root.at_exit(quit)
 
         logger.debug("创建启动界面")
         setup = maliang.Toplevel(root, size=(500, 250), title="启动")
